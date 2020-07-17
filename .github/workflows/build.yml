@@ -1,0 +1,36 @@
+name: build image
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Build & Push images to github repo
+        uses: opspresso/action-docker@v0.2.8
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.GAYHUB_USERNAME }}
+          PASSWORD: ${{ secrets.GAYHUB_TOKEN }}
+          REGISTRY: "docker.pkg.github.com"
+          DOCKERFILE: "Dockerfile"
+          IMAGE_NAME: "tdengine-server"
+          TAG_NAME: "1.6.6.1"
+          LATEST: "true"
+
+      - name: Build & Push images to dockerhub repo
+        uses: opspresso/action-docker@v0.2.8
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERFILE: "Dockerfile"
+          IMAGE_NAME: "tdengine-server"
+          TAG_NAME: "1.6.6.1"
+          LATEST: "true"
