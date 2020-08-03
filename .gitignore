@@ -1,2 +1,4 @@
 .idea
 .git
+*.zip
+*.tar.gz

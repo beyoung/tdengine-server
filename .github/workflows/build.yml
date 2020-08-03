@@ -1,6 +1,8 @@
 name: build image
 
-on: push
+on:
+  create:
+    tags:
 
 jobs:
   build:
@@ -19,7 +21,7 @@ jobs:
           REGISTRY: "docker.pkg.github.com"
           DOCKERFILE: "Dockerfile"
           IMAGE_NAME: "tdengine-server"
-          TAG_NAME: "1.6.6.1"
+          TAG_NAME: "2.0.0.0"
           LATEST: "true"
 
       - name: Build & Push images to dockerhub repo
@@ -31,5 +33,5 @@ jobs:
           PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
           DOCKERFILE: "Dockerfile"
           IMAGE_NAME: "beyouth/tdengine-server"
-          TAG_NAME: "1.6.6.1"
+          TAG_NAME: "2.0.0.0"
           LATEST: "true"
