@@ -1,0 +1,53 @@
+version: '3.6'
+
+services:
+  tdengine-001:
+    image: beyouth/tdengine-server
+    hostname: tdengine-001
+    ports:
+      - 6030:6030
+    build:
+      dockerfile: Dockerfile
+      context: .
+    entrypoint: ["taosd", "-c", "/etc/taos"]
+
+  tdengine-002:
+    hostname: tdengine-002
+    volumes:
+      - ./taos-dnode.cfg:/etc/taos/taos.cfg
+    image: beyouth/tdengine-server
+    build:
+      dockerfile: Dockerfile
+      context: .
+    entrypoint: ["taosd", "-c", "/etc/taos"]
+
+  tdengine-003:
+    hostname: tdengine-003
+    volumes:
+      - ./taos-dnode.cfg:/etc/taos/taos.cfg
+    image: beyouth/tdengine-server
+    build:
+      dockerfile: Dockerfile
+      context: .
+    entrypoint: ["taosd", "-c", "/etc/taos"]
+
+  tdengine-004:
+    hostname: tdengine-004
+    volumes:
+      - ./taos-dnode.cfg:/etc/taos/taos.cfg
+    image: beyouth/tdengine-server
+    build:
+      dockerfile: Dockerfile
+      context: .
+    entrypoint: ["taosd", "-c", "/etc/taos"]
+
+  tdengine-cluster-bootstrap:
+    image: beyouth/tdengine-server
+    build:
+      dockerfile: Dockerfile
+      context: .
+    entrypoint: "sh /bootstrap-cluster.sh"
+    volumes:
+      - ./taos-dnode.cfg:/etc/taos/taos.cfg
+      - ./create_dnodes.sh:/create_dnodes.sh
+      - ./bootstrap-cluster.sh:/bootstrap-cluster.sh
