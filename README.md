@@ -2,7 +2,7 @@
 
 ![build image](https://github.com/beyoung/tdengine-server/workflows/build%20image/badge.svg)
 
-tdengine version: 2.0.5.1
+tdengine version: 2.0.6.0
 linux version: debian:stable-20200607-slim
 
 ## bootstrap tdengine cluster 
