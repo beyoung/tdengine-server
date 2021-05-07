@@ -1,6 +1,6 @@
 FROM debian:stable-20200607-slim
 
-COPY TDengine-server-2.0.20.0-Linux-x64.deb /TDengine-server-Linux-x64.deb
+COPY TDengine-server-2.1.0.0-Linux-x64.deb /TDengine-server-Linux-x64.deb
 
 COPY taos.cfg /etc/taos/taos.cfg
 
